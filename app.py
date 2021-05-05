@@ -5,13 +5,37 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ac4.db"
 db = SQLAlchemy(app)
 
-class Follow(db.Model):
-    __tablename__ = "follow"
+class User(db.Model):
+    # nome da tabela
+    __tablename__ = "user"
+    # campos da tabela
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(50))
+    name = db.Column(db.String(50))
+    email = db.Column(db.String(50))
+    # post_user = db.relationship('Post', backref ='User', lazy=True)
+    # construtor da classe User
+    def __init__(self, user, password, name, email):
+        self.user = user
+        self.password = password
+        self.name = name
+        self.email = email
 
-        id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-        id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-        user = db.relationship('user',lazy='subquery',
-        backref=db.backref('follow', lazy=True))
+class Follow(db.Model):
+    # nome da tabela
+    tablename="follow"
+    # campos da tabela
+    id =db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id_user = db.Column(db.Integer(100), db.ForeignKey('follow_user.id'), nullable=False)
+    id_follower = db.Column(db.Integer(100), db.ForeignKey('follow_user.id'), nullable=False)
+
+    follow_user = db.relationship("User")
+
+    # construtor da classe Follow
+    def __init__(self, user, password, name, email):
+        self.id_user = id_user
+        self.id_folllower = id_folllower
 
 # esta classe irá criar a minha tabela
 class Post(db.Model):
@@ -25,11 +49,9 @@ class Post(db.Model):
     post_user = db.relationship("User")
 
     # construtor da classe Post
-    def __init__(self, user, password, name, email):
-        self.user = user
-        self.password = password
-        self.name = name
-        self.email = email
+    def __init__(self, content, id_user):
+        self.content = content
+        self.id_user = id_user
 
 @app.route("/")
 def index():
