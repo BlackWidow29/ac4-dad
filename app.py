@@ -30,3 +30,15 @@ class Post(db.Model):
         self.password = password
         self.name = name
         self.email = email
+
+@app.route("/")
+def index():
+    # select * from
+    usuarios = User.query.all()
+    return render_template("index.html", usuarios=usuarios)
+
+
+if __name__ == "__main__":
+    # crio a tabela
+    db.create_all()
+    app.run(debug=True)
