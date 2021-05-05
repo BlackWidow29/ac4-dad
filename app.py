@@ -33,9 +33,9 @@ class Follow(db.Model):
     follow_user = db.relationship("User")
 
     # construtor da classe Follow
-    def __init__(self, id_user, id_folllower):
+    def __init__(self, id_user, id_follower):
         self.id_user = id_user
-        self.id_folllower = id_folllower
+        self.id_folllower = id_follower
 
 # esta classe irá criar a minha tabela
 class Post(db.Model):
