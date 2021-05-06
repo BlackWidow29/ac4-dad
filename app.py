@@ -27,10 +27,11 @@ class Follow(db.Model):
     tablename="follow"
     # campos da tabela
     id =db.Column(db.Integer, primary_key=True, autoincrement=True)
-    id_user = db.Column(db.Integer(100), db.ForeignKey('follow_user.id'), nullable=False)
-    id_follower = db.Column(db.Integer(100), db.ForeignKey('follow_user.id'), nullable=False)
+    id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    id_follower = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    follow_user = db.relationship("User")
+    follow_user = db.relationship("User", foreign_keys=[id_user])
+    follow_follower = db.relationship("User", foreign_keys=[id_follower])
 
     # construtor da classe Follow
     def __init__(self, id_user, id_follower):
@@ -44,9 +45,9 @@ class Post(db.Model):
     # campos da tabela
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     content = db.Column(db.String(100), unique=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('post_user.id'), nullable=False)
+    id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    post_user = db.relationship("User")
+    post_user = db.relationship("User", foreign_keys=[id_user])
 
     # construtor da classe Post
     def __init__(self, content, id_user):
