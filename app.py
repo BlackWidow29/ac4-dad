@@ -1,67 +1,44 @@
-from flask import Flask, render_template, redirect, request, url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, request, redirect, url_for
+from flask_login import login_user, logout_user
+from app import app, db
+from app.models import User
 
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ac4.db"
-db = SQLAlchemy(app)
+@app.route('/')
+def home():
+    return render_template('home.html')
 
-class User(db.Model):
-    # nome da tabela
-    __tablename__ = "user"
-    # campos da tabela
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(50))
-    name = db.Column(db.String(50))
-    email = db.Column(db.String(50))
-    # post_user = db.relationship('Post', backref ='User', lazy=True)
-    # construtor da classe User
-    def __init__(self, user, password, name, email):
-        self.user = user
-        self.password = password
-        self.name = name
-        self.email = email
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
 
-class Follow(db.Model):
-    # nome da tabela
-    tablename="follow"
-    # campos da tabela
-    id =db.Column(db.Integer, primary_key=True, autoincrement=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    id_follower = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        user = User(name, email, password)
+        db.session.add(user)
+        db.session.commit()
 
-    follow_user = db.relationship("User", foreign_keys=[id_user])
-    follow_follower = db.relationship("User", foreign_keys=[id_follower])
+    return render_template('register.html')
 
-    # construtor da classe Follow
-    def __init__(self, id_user, id_follower):
-        self.id_user = id_user
-        self.id_folllower = id_follower
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
 
-# esta classe irá criar a minha tabela
-class Post(db.Model):
-    # nome da tabela
-    __tablename__ = "post"
-    # campos da tabela
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    content = db.Column(db.String(100), unique=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        user =  User.query.filter_by(email=email).first()
 
-    post_user = db.relationship("User", foreign_keys=[id_user])
+        if not User or not user.verify_password(password):
+            return redirect(url_for('login'))
 
-    # construtor da classe Post
-    def __init__(self, content, id_user):
-        self.content = content
-        self.id_user = id_user
+        login_user(user)
+        return redirect(url_for('home'))
 
-@app.route("/")
-def index():
-    # select * from
-    usuarios = User.query.all()
-    return render_template("index.html", usuarios=usuarios)
+    return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
-if __name__ == "__main__":
-    # crio a tabela
-    db.create_all()
-    app.run(debug=True)
+app.run(debug=True)
