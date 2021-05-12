@@ -1,4 +1,6 @@
-
+h3 {
+  color: #cccccc;
+}
 
 html {
   background-color: #56baed;
@@ -63,8 +65,6 @@ h2 {
 
 
 
-/* TABS */
-
 h2.inactive {
   color: #cccccc;
 }
@@ -73,8 +73,6 @@ h2.active {
   color: #0d0d0d;
   border-bottom: 2px solid #5fbae9;
 }
-
-
 
 
 
@@ -100,11 +98,11 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
   background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -112,7 +110,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -133,14 +131,12 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=password]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
-  color: #cccccc;
-}
+
 
 
 
@@ -179,7 +175,7 @@ input[type=text]:placeholder {
   }
 }
 
-/* Simple CSS3 Fade-in Animation */
+
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -215,6 +211,7 @@ input[type=text]:placeholder {
   -webkit-animation-delay: 0.8s;
   -moz-animation-delay: 0.8s;
   animation-delay: 0.8s;
+
 }
 
 .fadeIn.fourth {
@@ -223,7 +220,6 @@ input[type=text]:placeholder {
   animation-delay: 1s;
 }
 
-/* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
   left: 0;
@@ -243,14 +239,16 @@ input[type=text]:placeholder {
   width: 100%;
 }
 
-
-
-
-
 *:focus {
     outline: none;
 } 
 
 #icon {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
+
+.buttonstyle{
+  size: 5px;
+}
+
