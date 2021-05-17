@@ -1,9 +1,5 @@
-h3 {
-  color: #cccccc;
-}
-
 html {
-  background-color: #56baed;
+  background-color: #5bc0de;
 }
 
 body {
@@ -27,8 +23,6 @@ h2 {
   margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
-
-
 
 .wrapper {
   display: flex;
@@ -63,8 +57,6 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
-
-
 h2.inactive {
   color: #cccccc;
 }
@@ -74,10 +66,8 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
-
-
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #56baed;
+  background-color: #5bc0de;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -98,11 +88,11 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
   background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -136,9 +126,9 @@ input[type=text]:focus, input[type=password]:focus {
   border-bottom: 2px solid #5fbae9;
 }
 
-
-
-
+input[type=text]:placeholder, input[type=text]:placeholder {
+  color: #cccccc;
+}
 
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
@@ -175,7 +165,6 @@ input[type=text]:focus, input[type=password]:focus {
   }
 }
 
-
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -211,7 +200,6 @@ input[type=text]:focus, input[type=password]:focus {
   -webkit-animation-delay: 0.8s;
   -moz-animation-delay: 0.8s;
   animation-delay: 0.8s;
-
 }
 
 .fadeIn.fourth {
@@ -226,7 +214,7 @@ input[type=text]:focus, input[type=password]:focus {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: #5bc0de;
   content: "";
   transition: width 0.2s;
 }
@@ -245,10 +233,4 @@ input[type=text]:focus, input[type=password]:focus {
 
 #icon {
   margin-top: 10px;
-  margin-bottom: 10px;
 }
-
-.buttonstyle{
-  size: 5px;
-}
-

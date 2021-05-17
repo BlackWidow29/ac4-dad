@@ -1,7 +1,48 @@
-<form action="" method="post">
-    <input type="text" name="name" placeholder="Insira um nome">
-    <input type="email" name="email" placeholder="Insira um e-mail">
-    <input type="password" name="password" placeholder="*********">
-    <input type="submit" value="Cadastrar">
+<!DOCTYPE html>
+<html lang="pt-br">
 
-</form>
+<head>
+    <title>Tchuiter</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/images/twitter-icone.png" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+            <div class="fadeIn first">
+                <img src="../static/images/twitter-icone.png" id="icon" alt="User Icon" width="60" height="60">
+            </div>
+
+
+            <form action="{{ url_for('register') }}" method="POST">
+                <h3>Nome</h3>
+                <input type="text" id="nome" class="fadeIn second" name="nome" required="required">
+                <h3>E-mail</h3>
+                <input type="text" id="login" class="fadeIn second" name="login" required="required">
+                <h3>Senha</h3>
+                <input type="password" name="senha" id="senha" required size="10" maxlength="10" />
+                <p></p>
+                <input type="checkbox" onclick="mostrarOcultarSenha('senha','senha1')"> Mostrar Senha
+                <p></p>
+
+                <input type="submit" class="fadeIn fourth" value="Cadastrar">
+            </form>
+
+
+            <div id="formFooter">
+                <a class="underlineHover" href="{{ url_for('login') }}">Já tenho um cadastro</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/js/main.js"></script>
+</body>
+
+</html>
