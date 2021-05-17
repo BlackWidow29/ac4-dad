@@ -10,20 +10,21 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
+        name = request.form['nome']
+        email = request.form['login']
+        password = request.form['senha']
 
-        user = User(name, email, password)
+        user = User(name, email, password,0,0)
         db.session.add(user)
         db.session.commit()
-
-    return render_template('register.html')
+        render_template('login.html')
+    else:
+        return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['login']
         password = request.form['password']
 
         user =  User.query.filter_by(email=email).first()
@@ -33,8 +34,8 @@ def login():
 
         login_user(user)
         return redirect(url_for('home'))
-
-    return render_template('login.html')
+    else:
+        return render_template('login.html')
 
 @app.route('/logout')
 def logout():

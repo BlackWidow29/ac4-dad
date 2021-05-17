@@ -1,5 +1,4 @@
 from app import db, login_manager
-from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -15,16 +14,18 @@ class User(db.Model, UserMixin):
 
     # campos da tabela
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    password = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
     followers = db.Column(db.Integer, nullable=False)
     following = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, followers, following):
         self.name = name
         self.email = email
-        self.password = generate_password_hash(password)
+        self.password = password
+        self.followers = followers
+        self.following = following
 
     def verify_password(self, password):
         return check_password_hash(self.password, password)

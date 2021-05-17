@@ -5,7 +5,7 @@
 <head>
     <title>Tchuiter</title>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="Static/images/twitter-icone.png" />
+    <link rel="shortcut icon" href="../static/images/twitter-icone.png" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 
@@ -17,13 +17,13 @@
         <div id="formContent">
 
             <div class="fadeIn first">
-                <img src="Static/images/twitter-icone.png" id="icon" alt="User Icon" width="60" height="60">
+                <img src="../static/images/twitter-icone.png" id="icon" alt="User Icon" width="60" height="60">
             </div>
 
 
-            <form>
+            <form action="{{ url_for('login') }}" method="POST">
                 <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required= "required">
-                <input type="password" id="password" class="fadeIn third" name="login" placeholder="Senha" required= "required">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Senha" required= "required">
                 <input type="submit" class="fadeIn fourth" value="ENTRAR">
             </form>
 
