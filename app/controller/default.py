@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from app import app, db
-from app.models import User
+from app.model.tables import User
 
 @app.route('/')
 def home():
@@ -41,4 +41,6 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-app.run(debug=True)
+@app.route('/follow/<user>/<follower>', methods=['GET'])
+def follow():
+    pass
