@@ -48,6 +48,22 @@ def profile(username):
     user = User.query.filter_by(email=username).first()
     return render_template('edit_user.html', user=user)
 
+@app.route('/changepassword/<user>', methods=['POST'])
+def change_password(user):
+    password = request.form['password']
+    user = User.query.filter_by(email=user).first()
+    user.set_password(password)
+    db.session.commit()
+    return redirect(url_for('profile',username=user.email))
+
+@app.route('/changeuser/<email>', methods=['POST'])
+def change_user(email):
+    email_change = request.form['user']
+    user = User.query.filter_by(email=email).first()
+    user.email = email_change
+    db.session.commit()
+    return redirect(url_for('profile', username=user.email))
+
 @app.route('/follow/<user>/<follower>', methods=['GET'])
 def follow():
     pass
