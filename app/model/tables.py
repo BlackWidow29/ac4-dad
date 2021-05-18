@@ -30,6 +30,10 @@ class User(db.Model, UserMixin):
     def verify_password(self, password):
         return check_password_hash(self.password, password)
 
+    def set_password(self, new_pwd):
+        self.password = generate_password_hash(new_pwd)
+        return self.password
+
 
 class Follow(db.Model):
     __tablename__ = "follow"
