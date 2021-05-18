@@ -4,3 +4,6 @@
 /app/ac4.db
 /.idea
 /__pycache__
+/app/__pycache__
+/app/model/__pycache__
+/app/controller/__pycache__

@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     # campos da tabela
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    email = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(50), nullable=False)
     followers = db.Column(db.Integer, nullable=False)
     following = db.Column(db.Integer, nullable=False)

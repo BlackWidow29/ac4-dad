@@ -69,13 +69,23 @@ def change_user(email):
     db.session.commit()
     return redirect(url_for('profile', username=user.email))
 
-@app.route('/follow/<user>/<follower>', methods=['GET'])
-def follow():
-    pass
+@app.route('/follow/<id_user>/<follower>', methods=['GET'])
+def follow(id_user,follower):
+    current_user = User.query.filter_by(email=follower).first()
+    following = User.query.filter_by(id=id_user).first()
+
+    follow = Follow(following.id,current_user.id)
+
+    current_user.following += 1
+    following.followers += 1
+
+    db.session.add(follow)
+    db.session.commit()
+    posts = Post.query.all()
+    return render_template('home.html', posts=posts)
 
 @app.route("/posting/<username>", methods=['POST'])
 def posting(username):
-
     user = User.query.filter_by(email=username).first()
     conteudoPost = request.form['postConteudo']
 
