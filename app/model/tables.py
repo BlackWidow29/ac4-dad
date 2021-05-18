@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     def __init__(self, name, email, password, followers, following):
         self.name = name
         self.email = email
-        self.password = password
+        self.password = generate_password_hash(password)
         self.followers = followers
         self.following = following
 
