@@ -1,6 +1,12 @@
 /venv
 /venv_ac4
 /.vscode
+<<<<<<< HEAD
 /ac4.db
 /.idea
 /__pycache__
+=======
+/app/ac4.db
+/.idea
+/__pycache__
+>>>>>>> 8b0ce181a28d68bb9bf8aa9d1c787b336b5d5e84

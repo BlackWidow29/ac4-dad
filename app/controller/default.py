@@ -47,6 +47,11 @@ def profile(username):
     user = User.query.filter_by(email=username).first()
     return render_template('edit_user.html', user=user)
 
+@app.route('/profilepost/<id_user>', methods=['GET'])
+def profile_post(id_user):
+    user = User.query.filter_by(id=id_user).first()
+    return render_template('edit_user.html', user=user)
+
 @app.route('/changepassword/<user>', methods=['POST'])
 def change_password(user):
     password = request.form['password']
