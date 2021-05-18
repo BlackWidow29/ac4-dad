@@ -1,4 +1,6 @@
 /venv
 /venv_ac4
 /.vscode
-/ac4.db
+/app/ac4.db
+/.idea
+/__pycache__

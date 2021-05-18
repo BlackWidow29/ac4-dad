@@ -51,7 +51,7 @@ class Post(db.Model):
     __tablename__ = "post"
     # campos da tabela
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    content = db.Column(db.String(100), unique=True)
+    content = db.Column(db.String(100))
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     post_user = db.relationship("User")
