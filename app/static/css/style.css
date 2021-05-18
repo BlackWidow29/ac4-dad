@@ -146,12 +146,10 @@ header .logo{
 footer{
 	background:#f4f4f4;
 	height:90px;
-	color:#5bc0de;
 	font-weight: bold;
 	text-align: center;
 	padding-top:40px;
 	margin-top:30px;
-	border-top:7px solid #5bc0de;
 }
 
 @media(min-width: 991px){

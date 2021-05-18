@@ -1,12 +1,11 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from app import app, db
-from app.model.tables import *
+from app.model.tables import User, Follow, Post
 
 @app.route('/')
 def home():
-    posts = Post.query.all()
-    return render_template('home.html', posts=posts)
+    return render_template('home.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
