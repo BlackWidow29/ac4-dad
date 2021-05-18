@@ -28,8 +28,8 @@
         <div class="container">
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Inicio</a></li>
-                    <li><a href="edit_user.html">Perfil</a></li>
+                    <li class="active"><a href="/">Inicio</a></li>
+                    <li><a href="{{ url_for('profile', username=current_user.email) }}">Perfil</a></li>
                 </ul>
             </div>
         </div>
@@ -58,7 +58,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a class="post-avatar thumbnail" href="profile.html"><img src="Static/images/user.png">
+                                    <a class="post-avatar thumbnail" href="{{ url_for('profile', username=current_user.email) }}"><img src="../static/images/user.png">
                                         <div class="text-center">nome do usuário</div>
                                     </a>
                                     <div class="likes text-center">0 Gostei</div>

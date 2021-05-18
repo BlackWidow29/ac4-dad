@@ -17,7 +17,7 @@ def register():
         user = User(name, email, password,0,0)
         db.session.add(user)
         db.session.commit()
-        render_template('login.html')
+        return render_template('login.html')
     else:
         return render_template('register.html')
 
@@ -27,7 +27,7 @@ def login():
         email = request.form['login']
         password = request.form['password']
 
-        user =  User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first()
 
         if not User or not user.verify_password(password):
             return redirect(url_for('login'))
@@ -41,6 +41,11 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/profile/<username>', methods=['GET'])
+def profile(username):
+    user = User.query.filter_by(email=username).first()
+    return render_template('edit_user.html', user=user)
 
 @app.route('/follow/<user>/<follower>', methods=['GET'])
 def follow():
