@@ -1,11 +1,12 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from app import app, db
-from app.model.tables import User
+from app.model.tables import *
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = Post.query.all()
+    return render_template('home.html', posts=posts)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -50,3 +51,15 @@ def profile(username):
 @app.route('/follow/<user>/<follower>', methods=['GET'])
 def follow():
     pass
+
+@app.route("/posting/<username>", methods=['POST'])
+def posting(username):
+
+    user = User.query.filter_by(email=username).first()
+    conteudoPost = request.form['postConteudo']
+
+    posting = Post(conteudoPost, user.id)
+    db.session.add(posting)
+    db.session.commit()
+    posts = Post.query.all()
+    return render_template('home.html', posts=posts)

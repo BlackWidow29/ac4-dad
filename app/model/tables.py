@@ -53,11 +53,9 @@ class Post(db.Model):
     post_user = db.relationship("User")
 
     # construtor da classe Post
-    def __init__(self, user, password, name, email):
-        self.user = user
-        self.password = password
-        self.name = name
-        self.email = email
+    def __init__(self, content, id_user):
+        self.content = content
+        self.id_user = id_user
 
 
 db.create_all()
