@@ -42,7 +42,10 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-# @app.route('/profile/<user>')
+@app.route('/profile/<username>', methods=['GET'])
+def profile(username):
+    user = User.query.filter_by(email=username).first()
+    return render_template('edit_user.html', user=user)
 
 @app.route('/follow/<user>/<follower>', methods=['GET'])
 def follow():

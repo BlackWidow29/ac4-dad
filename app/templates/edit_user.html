@@ -30,8 +30,8 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Inicio</a></li>
-                    <li><a href="edit_user.html">Perfil</a></li>
+                    <li class="active"><a href="/">Inicio</a></li>
+                    <li><a href="{{ url_for('profile', username=current_user.email) }}">Perfil</a></li>
                 </ul>
             </div>
         </div>
@@ -42,15 +42,15 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="profile">
-                        <h1 class="page-header">Rafael Galvão</h1>
+                        <h1 class="page-header">{{ user.name }}</h1>
                         <div class="row">
                             <div class="col-md-4">
                                 <img src="Static/images/user.png" class="img-thumbnail">
                             </div>
                             <div class="col-md-8">
                                 <ul>
-                                    <li><strong>Nome:</strong> Nome do usuário</li>
-                                    <li><strong>Email: </strong>e-mail</li>
+                                    <li><strong>Nome:</strong> {{ user.name }}</li>
+                                    <li><strong>Email: </strong>{{ user.email }}</li>
                                 </ul>
 
                             </div>
